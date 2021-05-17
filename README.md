@@ -157,12 +157,27 @@
 - 워드프레스 데이터베이스에는 두 명의 유저가 있어야합니다. 이 중 한명은 **관리자**입니다. 관리자의 **Username**에는 **admin/Admin** 혹은 **administrator/Adminstrator**와 같은 내용이 포함 될 수 없습니다. (예 : admin, adminstrator, Adminstrator, admin123 등)
 
 - INFORMATION ❗️
+    > Your volumes will be available in the /home/login/data folder of the host machine using Docker. Of course, you have to replace the login with yours.
+    +   볼륨들은 도커를 사용해 호스트 시스템의 `/home/login/data` 폴더에서 사용하능합니다. 물론 `login` 은 우리의 아이디로 대체됩니다. `(/home/intraID/data)`
 
 > To make things simpler, you have to configure your domain name so it points to your local IP address. This domain name must be [login.42.fr](http://login.42.fr/). Again, you have to use your own login. For example, if your login is wil, [wil.42.fr](http://wil.42.fr/) will redirect to the IP address pointing to wil’s website.
 
 - 쉽게 설명해, 우리는 도메인 이름이 로컬 IP를 리다이렉션 하도록 구성해야합니다. 이 때 도메인 이름은 `[login.42.fr](http://login.42.fr)` 이어야 합니다. 예를 들어 로그인 ID가 `wil`인 경우 `[wil.42.fr](http://wil.42.fr)` 이 해당 웹사이트의 IP 주소로 리다이렉션 되어야 합니다.
 
 - CAUTION ‼️
+    > The latest tag is prohibited.
+No password must be present in your Dockerfile.
+It is mandatory to use environment variables.
+Also, it is strongly recommended to use a `.env`file to store environment variables.
+The .env file should be located at the root of the srcs directory.
+Your NGINX container must be the only entrypoint into your
+infrastrucYour NGINX container must be the only entrypoint into your infrastructure via the port 443 only, using the TLSv1.2 or TLSv1.3 protocol.
+    +   최신 태그는 금지됩니다.
+    +   도커파일에는 암호가 없어야합니다.
+    +   환경 변수를 사용해야합니다.
+    +   이 환경 변수들은 `.env` 파일을 사용해 저장하는 것이 좋습니다.
+    +   `.env` 파일은 루트 디렉토리의 srcs폴더에 만들어야합니다.
+    +   NGINX 컨테이너는 TLSv1.2 또는 TLSv1.3 프로토콜을 사용하는 443 포트를 통해서만 우리가 만든 인트라로 진입할 수 있습니다.
 
 > Here is an example diagram of the expected result
 
