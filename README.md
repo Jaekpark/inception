@@ -220,6 +220,15 @@ infrastrucYour NGINX container must be the only entrypoint into your infrastruct
 - 이 외에 유용하다고 생각되는 서비스를 설정합니다. 물론 동료 평가동안 이 서비스가 왜 필요한지 설명해야 할 것입니다.
 
 - INFORMATION ❗️
+    > To complete the bonus part, you have the possibility to set up extra services. In this case, you may open more ports to suit your needs.
+
+    +   보너스 파트를 위한 추가적인 서비스를 설정할 수 있습니다. 이 경우 필요에 따라 추가적인 포트를 사용할 수 있습니다.
+
+
 - CAUTION  ‼️
+    > The bonus part will only be assessed if the mandatory part is PERFECT. Perfect means the mandatory part has been integrally done and works without malfunctioning. If you have not passed ALL the mandatory requirements, your bonus part will not be evaluated at all.
+
+    +   보너스 파트는 필수 파트가 완벽하게 구현된 경우에만 평가받을 수 있습니다. 완벽하다는 의미는 필수 파트가 통합적으로 수행되고, 오작동이 없다는 것을 의미합니다. 필수 파트를 통과하지 못한 경우 보너스 파트는 평가되지 않습니다.
+
 
 ---
