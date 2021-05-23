@@ -1,0 +1,88 @@
+################### INCEPTION #######################
+##   Cobb : Kick                                   ##
+##   Ariadne : what is a kick?                     ##
+#####################################################
+version: "3"
+
+services:
+########################
+#    Dream : NGINX     #
+########################
+  nginx:
+    depends_on:
+      - wordpress
+    build:
+      context: ./requirements/nginx
+    image: nginx:inception
+    container_name: nginx
+    ports:
+      - "443:443"
+    restart: always
+    networks:
+      - goto_deeper
+    volumes:
+      - wordpress_files:/var/www/wordpress
+
+################################
+# Dream in a dream : WORDPRESS #
+################################
+  wordpress:
+    depends_on:
+      - mariadb
+    build:
+      context: ./requirements/wordpress
+    image: wordpress:inception
+    container_name: wordpress
+    environment:
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+      WORDPRESS_DB_USER: ${MYSQL_ADMIN}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
+    expose:
+      - "9000"
+    restart: always
+    networks:
+      - goto_deeper
+    volumes:
+      - wordpress_files:/var/www/wordpress
+
+###########################
+#     Limbo : MARIADB     #
+###########################
+  mariadb:
+    build:
+      context: ./requirements/mariadb
+      args:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_ADMIN: ${MYSQL_ADMIN}
+        MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_USER_PASSWORD: ${MYSQL_USER_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+    image: mariadb:inception
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ADMIN: ${MYSQL_ADMIN}
+      MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_USER_PASSWORD: ${MYSQL_USER_PASSWORD}
+    expose:
+      - "3306"
+    restart: always
+    volumes:
+      - db_files:/var/lib/mysql
+    networks:
+      - goto_deeper
+
+volumes:
+  wordpress_files:
+    name: wordpress_files
+  db_files:
+    name: db_files
+
+networks:
+  goto_deeper:
+    name: goto_deeper
+    driver: bridge
