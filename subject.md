@@ -65,7 +65,7 @@
 > This project aims to broaden your knowledge of system administration by using Docker. You will virtualize several Docker images, creating them in your new personal virtual machine.
 
 - 이번 프로젝트 목표는 **도커**를 사용해 시스템을 관리하는 부분의 지식을 넓히는 것입니다.
-- 우리는 여러 도커 이미지를 가상화하고, 이를 개인의 가상 머신(cluster mac)에서 작동시킬 것입니다.
+- 우리는 여러 도커 이미지를 가상화하고, 이를 개인의 가상 머신에서 작동시킬 것입니다.
 
 ---
 
@@ -94,7 +94,7 @@
 
 > This project consists in having you set up a small infrastructure composed of different services under specific rules. The whole project has to be done in a virtual machine. You have to use docker-compose.
 
-- 이 프로젝트는 특정한 규칙에 따라 서로 다른 서비스로 구성된 소규모 인프라를 구축하는 과제입니다. 프로젝트의 모든 과정은 가상 머신(클러스터 환경)에서 수행되야 하고, **docker-compose**를 사용해야 합니다.
+- 이 프로젝트는 특정한 규칙에 따라 서로 다른 서비스로 구성된 소규모 인프라를 구축하는 과제입니다. 프로젝트의 모든 과정은 가상 머신에서 수행되야 하고, **docker-compose**를 사용해야 합니다.
 
 > Each Docker image must have the same name as its corresponding service.
 
@@ -110,7 +110,7 @@
 
 > You also have to write your own Dockerfiles, one per service. The Dockerfiles must be called in your docker-compose.yaml by your Makefile.
 
-- 또한 각 서비스당 고유한 **Dockerfile**을 작성해야 합니다. 이 때 도커파일은 `Makefile`로 작성된 `docker-compse.yml`로 부터 호출되어야 합니다.
+- 또한 각 서비스당 고유한 **Dockerfile**을 작성해야 합니다. 이 때 도커파일은 `Makefile`을 통해 `docker-compse.yml`로 부터 호출되어야 합니다.
 
 > It means you have to build yourself the Docker images of your project. It is then forbidden to pull ready-made Docker images, as well as using services such as DockerHub(Alpine/Debian being excluded from this rule).
 
@@ -142,7 +142,7 @@
 
     > A Docker container is not a virtual machine. Thus, it is not recommended to use any hacky patch based on ’tail -f’ and so forth when trying to run it. Read about how daemons work and whether it's a good idea to use them or not.
 
-    도커 컨테이너는 가상 머신이 아닙니다.  따라서 컨테이너를 구동할 때 `tail-f` 등과 같은 명령에 기반한 임시방편적인 패치를 사용하는 것은 추천하지 않습니다. 
+    도커 컨테이너는 가상 머신이 아닙니다.  따라서 컨테이너를 구동할 때 `tail-f` 등과 같은 진부 명렁을 사용하는 것은 추천하지 않습니다. 
 
     도커 데몬이 어떻게 작동하는지 알아보고, 데몬을 사용하는 것이 좋은지 아닌지 읽어보시기 바랍니다.
 
@@ -150,7 +150,7 @@
 
     > Of course, using network: host or --link is forbidden.
 
-    `host` , `--link` 같은 명령어를 사용 할 수 없습니다.
+    `network: host` , `--link` 같은 명령을 사용 할 수 없습니다.
 
 > In your WordPress database, there must be two users, one of them being the ad- ministrator. The administrator’s username can’t contain admin/Admin or admin- istrator/Administrator (e.g., admin, administrator, Administrator, admin-123, and so forth).
 
