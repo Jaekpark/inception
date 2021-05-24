@@ -20,7 +20,10 @@ RUN apt-get update && apt-get -y upgrade &&\
 
 RUN mkdir -p /var/www &&\
 	mkdir -p /run/php/
-COPY ./tools/wordpress/ /var/www/wordpress
+COPY ./tools/latest.tar.gz ./
+RUN tar -xvf latest.tar.gz &&\
+	mv wordpress /var/www/wordpress/
+#COPY ./tools/wordpress/ /var/www/wordpress
 #COPY ./tools/fpm/php.ini /etc/php/7.3/fpm/php.ini
 #COPY ./tools/cli/php.ini /etc/php/7.3/cli/php.ini
 COPY ./tools/www.conf /etc/php/7.3/fpm/pool.d

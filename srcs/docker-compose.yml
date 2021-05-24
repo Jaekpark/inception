@@ -21,7 +21,7 @@ services:
     networks:
       - goto_deeper
     volumes:
-      - wordpress_files:/var/www/wordpress
+      - wordpress_files1:/var/www/wordpress
 
 ################################
 # Dream in a dream : WORDPRESS #
@@ -44,7 +44,7 @@ services:
     networks:
       - goto_deeper
     volumes:
-      - wordpress_files:/var/www/wordpress
+      - wordpress_files1:/var/www/wordpress
 
 ###########################
 #     Limbo : MARIADB     #
@@ -72,15 +72,15 @@ services:
       - "3306"
     restart: always
     volumes:
-      - db_files:/var/lib/mysql
+     - db_files1:/var/lib/mysql
     networks:
       - goto_deeper
 
 volumes:
-  wordpress_files:
-    name: wordpress_files
-  db_files:
-    name: db_files
+  wordpress_files1:
+    name: wordpress_files1
+  db_files1:
+    name: db_files1
 
 networks:
   goto_deeper:

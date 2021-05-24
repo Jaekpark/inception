@@ -24,16 +24,16 @@
 define( 'DB_NAME', getenv('WORDPRESS_DB_NAME') );
 
 /** MySQL database username */
-#define( 'DB_USER', 'jaekpark' );
-define( 'DB_USER', getenv('WORDPRESS_DB_PASSWORD') );
+define( 'DB_USER', 'jaekpark' );
+#define( 'DB_USER', getenv('WORDPRESS_DB_PASSWORD') );
 
 /** MySQL database password */
-#define( 'DB_PASSWORD', 'jaekpark' );
-define( 'DB_PASSWORD', getenv('WORDPRESS_DB_PASSWORD') );
+define( 'DB_PASSWORD', 'jaekpark' );
+#define( 'DB_PASSWORD', getenv('WORDPRESS_DB_PASSWORD') );
 
 /** MySQL hostname */
-#define( 'DB_HOST', 'mariadb' );
-define( 'DB_HOST', getenv('WORDPRESS_DB_HOST') );
+define( 'DB_HOST', 'mariadb' );
+#define( 'DB_HOST', getenv('WORDPRESS_DB_HOST') );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
