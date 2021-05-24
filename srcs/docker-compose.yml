@@ -34,7 +34,7 @@ services:
     image: wordpress:inception
     container_name: wordpress
     environment:
-      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_HOST: mariadb:3306
       WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
       WORDPRESS_DB_USER: ${MYSQL_ADMIN}
       WORDPRESS_DB_PASSWORD: ${MYSQL_ADMIN_PASSWORD}

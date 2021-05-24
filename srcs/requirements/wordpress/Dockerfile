@@ -27,7 +27,7 @@ RUN tar -xvf latest.tar.gz &&\
 #COPY ./tools/fpm/php.ini /etc/php/7.3/fpm/php.ini
 #COPY ./tools/cli/php.ini /etc/php/7.3/cli/php.ini
 COPY ./tools/www.conf /etc/php/7.3/fpm/pool.d
-#COPY ./tools/wp-config.php /var/www/wordpress/
+COPY ./tools/wp-config.php /var/www/wordpress/
 
 RUN chown -R www-data:www-data /var/www/*
 
