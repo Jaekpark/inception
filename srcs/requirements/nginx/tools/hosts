@@ -1,7 +1,0 @@
-127.0.0.1	www.jaekpark.42.fr jaekpark.42.fr
-::1 www.jaekpark.42.fr jaekpark.42.fr
-fe00::0	ip6-localnet
-ff00::0	ip6-mcastprefix
-ff02::1	ip6-allnodes
-ff02::2	ip6-allrouters
-192.168.176.4	331de776c3fc
