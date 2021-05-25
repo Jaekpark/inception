@@ -13,7 +13,7 @@ services:
       - wordpress
     build:
       context: ./requirements/nginx
-    image: nginx:inception
+    image: nginx:${TAG}
     container_name: nginx
     ports:
       - "443:443"
@@ -21,7 +21,7 @@ services:
     networks:
       - goto_deeper
     volumes:
-      - wordpress_files:/var/www/wordpress
+      - wp_volume:/var/www/wordpress
 
 ################################
 # Dream in a dream : WORDPRESS #
@@ -31,10 +31,10 @@ services:
       - mariadb
     build:
       context: ./requirements/wordpress
-    image: wordpress:inception
+    image: wordpress:${TAG}
     container_name: wordpress
     environment:
-      WORDPRESS_DB_HOST: mariadb:3306
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
       WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
       WORDPRESS_DB_USER: ${MYSQL_ADMIN}
       WORDPRESS_DB_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
@@ -44,7 +44,7 @@ services:
     networks:
       - goto_deeper
     volumes:
-      - wordpress_files:/var/www/wordpress
+      - wp_volume:/var/www/wordpress
 
 ###########################
 #     Limbo : MARIADB     #
@@ -59,7 +59,7 @@ services:
         MYSQL_USER: ${MYSQL_USER}
         MYSQL_USER_PASSWORD: ${MYSQL_USER_PASSWORD}
         MYSQL_DATABASE: ${MYSQL_DATABASE}
-    image: mariadb:inception
+    image: mariadb:${TAG}
     container_name: mariadb
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -72,24 +72,24 @@ services:
       - "3306"
     restart: always
     volumes:
-     - db_files:/var/lib/mysql
+     - db_volume:/var/lib/mysql
     networks:
       - goto_deeper
 
 volumes:
-  wordpress_files:
-    name: wordpress_files
+  wp_volume:
+    name: wp_volume
     driver: local
     driver_opts:
       type: none
-      device: /home/jaekpark/data/wp
+      device: ${WP_VOLUME_PATH}
       o: bind
-  db_files:
-    name: db_files
+  db_volume:
+    name: db_volume
     driver: local
     driver_opts:
       type: none
-      device: /home/jaekpark/data/db
+      device: ${DB_VOLUME_PATH}
       o: bind
 
 networks:
