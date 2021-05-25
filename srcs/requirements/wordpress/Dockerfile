@@ -1,7 +1,7 @@
 FROM debian:buster
 
 RUN apt-get update && apt-get -y upgrade &&\
-	apt-get install -y php-fpm\
+	apt-get install -y mariadb-client php-fpm\
 	php-curl\
 	php-exif\
 	php-fileinfo\
