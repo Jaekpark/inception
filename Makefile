@@ -10,11 +10,11 @@ all: host volume up
 re: fclean all
 
 host:
-	$(SETUP_SH) append
+	./srcs/requirements/tools/setup.sh append
 
 volume:
-	mkdir -p $(WP_PATH)
-	mkdir -p $(DB_PATH)
+	mkdir -p /home/jaekpark/data/db
+	mkdir -p /home/jaekpark/data/wp
 
 up:
 	$(COMMAND) up --build -d
