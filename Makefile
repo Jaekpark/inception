@@ -1,7 +1,6 @@
 
 PATH = /home/jaekpark/inception
-SRC_PATH = $(PATH)/srcs
-COMMAND = cd $(SRCS_PATH) && docker-compose
+COMMAND = cd ./srcs && docker-compose
 SETUP_SH = ./srcs/requirements/tools/setup.sh
 WP_PATH = /home/jaekpark/data/wp
 DB_PATH = /home/jaekpark/data/db
