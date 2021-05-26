@@ -40,8 +40,6 @@ services:
         MYSQL_ADMIN: ${MYSQL_ADMIN}
         MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
         MYSQL_USER: ${MYSQL_USER}
-        MYSQL_USER_PASSWORD: ${MYSQL_USER_PASSWORD}
-        MYSQL_DATABASE: ${MYSQL_DATABASE}
     image: mariadb:${TAG}
     container_name: mariadb
     environment:
@@ -49,8 +47,6 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ADMIN: ${MYSQL_ADMIN}
       MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_USER_PASSWORD: ${MYSQL_USER_PASSWORD}
     expose:
       - "3306"
     restart: always

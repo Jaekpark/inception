@@ -5,12 +5,10 @@ RUN apt-get update && apt-get -y upgrade &&\
 
 COPY ./tools/setup.sh ./setup.sh
 
-#ARG MYSQL_DATABASE
-#ARG MYSQL_ADMIN
-#ARG MYSQL_ADMIN_PASSWORD
-#ARG MYSQL_ROOT_PASSWORD
-#ARG MYSQL_USER
-#:ARG MYSQL_USER_PASSWORD
+ARG MYSQL_DATABASE
+ARG MYSQL_ADMIN
+ARG MYSQL_ADMIN_PASSWORD
+ARG MYSQL_ROOT_PASSWORD
 
 RUN mkdir -p /run/mysql
 RUN service mysql start && sh ./setup.sh && mysql -u root -password=$MYSQL_ROOT_PASSWORD < setup.sql
