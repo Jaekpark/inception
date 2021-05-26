@@ -59,9 +59,9 @@ ps:
 
 restart: stop start
 
-clean: down rmi
+clean: down
 
-fclean: clean host_del
+fclean: rmi volume_del host_del
 	docker volume prune
 
 .PHONNY: all re host volume up down rmi start stop ps restart clean fclean volume_del host_del
