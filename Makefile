@@ -21,7 +21,8 @@ volume:
 
 volume_del:
 	@echo " - delete volume directory"
-	@rm -rf /home/jaekpark/data
+	@rm -rf /home/jaekpark/data/db
+	@rm -rf /home/jaekpark/data/wp
 	@echo " - OK"
 
 host_del:
