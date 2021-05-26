@@ -2,7 +2,7 @@
 PATH = /home/jaekpark/inception
 SRC_PATH = $(PATH)/srcs
 COMMAND = cd $(SRCS_PATH) && docker-compose
-SETUP_SH = /bin/bash ./srcs/requirements/tools/setup.sh
+SETUP_SH = ./srcs/requirements/tools/setup.sh
 WP_PATH = /home/jaekpark/data/wp
 DB_PATH = /home/jaekpark/data/db
 
@@ -14,8 +14,8 @@ host:
 	$(SETUP_SH) append
 
 volume:
-	make -p $(WP_PATH)
-	make -p $(DB_PATH)
+	mkdir -p $(WP_PATH)
+	mkdir -p $(DB_PATH)
 
 up:
 	$(COMMAND) up --build -d
