@@ -78,14 +78,12 @@ services:
 
 volumes:
   wp_volume:
-    name: wp_volume
     driver: local
     driver_opts:
       type: none
       device: ${WP_VOLUME_PATH}
       o: bind
   db_volume:
-    name: db_volume
     driver: local
     driver_opts:
       type: none
@@ -94,5 +92,4 @@ volumes:
 
 networks:
   goto_deeper:
-    name: goto_deeper
     driver: bridge
