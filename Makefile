@@ -32,27 +32,27 @@ host_del:
 
 up:
 	@echo " - Build application"
-	$(COMMAND) up --build -d
+	@$(COMMAND) up --build -d
 	@echo " - OK"
 
 down:
 	@echo " - Remove application"
-	$(COMMAND) down
+	@$(COMMAND) down
 	@echo " - OK"
 
 rmi:
 	@echo " - Remove docker images"
-	$(COMMAND) down --rmi all
+	@$(COMMAND) down --rmi all
 	@echo " - OK"
 
 start:
 	@echo " - start application"
-	$(COMMAND) start
+	@$(COMMAND) start
 	@echo " - OK"
 
 stop:
 	@echo " - stop application"
-	$(COMMAND) stop
+	@$(COMMAND) stop
 	@echo " - OK"
 
 ps:
