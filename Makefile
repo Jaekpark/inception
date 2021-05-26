@@ -1,7 +1,7 @@
 
 PATH = /home/jaekpark/inception
 SRC_PATH = $(PATH)/srcs
-COMMAND = cd $(SRCS_PATH) && sudo docker-compose
+COMMAND = cd $(SRCS_PATH) && docker-compose
 SETUP_SH = $(PATH)/srcs/requirements/tools/setup.sh
 WP_PATH = /home/jaekpark/data/wp
 DB_PATH = /home/jaekpark/data/db
@@ -40,8 +40,8 @@ restart: stop start
 clean: down rmi
 
 fclean: clean
-	sudo docker volume prune --force
-	$(SETUP_SH) deletea
+	docker volume prune --force
+	$(SETUP_SH) delete
 
 .PHONNY: all re host volume up down rmi start stop ps restart clean fclean
 
