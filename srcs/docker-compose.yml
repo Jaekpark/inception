@@ -1,13 +1,6 @@
-################### INCEPTION #######################
-##   Cobb : Kick                                   ##
-##   Ariadne : what is a kick?                     ##
-#####################################################
 version: "3"
 
 services:
-########################
-#    Dream : NGINX     #
-########################
   nginx:
     depends_on:
       - wordpress
@@ -18,14 +11,9 @@ services:
     ports:
       - "443:443"
     restart: always
-    networks:
-      - goto_deeper
     volumes:
       - wp_volume:/var/www/wordpress
 
-################################
-# Dream in a dream : WORDPRESS #
-################################
   wordpress:
     depends_on:
       - mariadb
@@ -41,14 +29,9 @@ services:
     expose:
       - "9000"
     restart: always
-    networks:
-      - goto_deeper
     volumes:
       - wp_volume:/var/www/wordpress
 
-###########################
-#     Limbo : MARIADB     #
-###########################
   mariadb:
     build:
       context: ./requirements/mariadb
@@ -73,8 +56,6 @@ services:
     restart: always
     volumes:
      - db_volume:/var/lib/mysql
-    networks:
-      - goto_deeper
 
 volumes:
   wp_volume:
@@ -89,7 +70,3 @@ volumes:
       type: none
       device: ${DB_VOLUME_PATH}
       o: bind
-
-networks:
-  goto_deeper:
-    driver: bridge
