@@ -19,6 +19,11 @@ volume:
 	@mkdir -p /home/jaekpark/data/wp
 	@echo " - OK"
 
+volume_del:
+	@echo " - delete volume directory"
+	@rm -rf /home/jaekpark/data
+	@echo " - OK"
+
 host_del:
 	@echo " - delete host config"
 	@./srcs/requirements/tools/setup.sh delete
@@ -56,9 +61,8 @@ restart: stop start
 
 clean: down rmi
 
-fclean: clean
-	docker volume prune --force
-	$(SETUP_SH) delete
+fclean: clean host_del
+	docker volume prune
 
-.PHONNY: all re host volume up down rmi start stop ps restart clean fclean
+.PHONNY: all re host volume up down rmi start stop ps restart clean fclean volume_del host_del
 
