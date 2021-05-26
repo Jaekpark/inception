@@ -14,7 +14,7 @@ host:
 	@echo " - OK"
 
 volume:
-	@echo " -  Make volume directory : /home/jaekpark/data"
+	@echo " - Make volume directory : /home/jaekpark/data"
 	@mkdir -p /home/jaekpark/data/db
 	@mkdir -p /home/jaekpark/data/wp
 	@echo " - OK"
@@ -25,19 +25,29 @@ host_del:
 	@echo " - OK"
 
 up:
+	@echo " - Build application"
 	$(COMMAND) up --build -d
+	@echo " - OK"
 
 down:
+	@echo " - Remove application"
 	$(COMMAND) down
+	@echo " - OK"
 
 rmi:
+	@echo " - Remove docker images"
 	$(COMMAND) down --rmi all
+	@echo " - OK"
 
 start:
+	@echo " - start application"
 	$(COMMAND) start
+	@echo " - OK"
 
 stop:
+	@echo " - stop application"
 	$(COMMAND) stop
+	@echo " - OK"
 
 ps:
 	$(COMMAND) ps
