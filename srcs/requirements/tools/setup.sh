@@ -5,14 +5,14 @@ CNT=$(cat /etc/hosts | grep "127.0.0.1 ${ID}" | wc -l)
 
 append()
 {
-	if [[ $(CNT) -eq 0 ]] ; then
+	if [[ ${CNT} -eq 0 ]] ; then
 		echo "127.0.0.1 ${ID}" | sudo tee -a /etc/hosts
 	fi
 }
 
 delete()
 {
-	if [[ $(CNT) -gt 0 ]] ; then
+	if [[ ${CNT} -gt 0 ]] ; then
 		sudo sed -i "/127.0.0.1 ${ID}/d" /etc/hosts
 	fi
 }
