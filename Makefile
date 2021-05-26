@@ -1,5 +1,4 @@
 
-PATH = /home/jaekpark/inception
 COMMAND = cd ./srcs && docker-compose
 SETUP_SH = ./srcs/requirements/tools/setup.sh
 WP_PATH = /home/jaekpark/data/wp
