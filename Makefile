@@ -23,7 +23,6 @@ volume_del:
 	@echo " - delete volume directory"
 	@sudo rm -rf /home/jaekpark/data/db
 	@sudo rm -rf /home/jaekpark/data/wp
-	@docker volume prune
 	@echo " - OK"
 
 host_del:
@@ -64,6 +63,6 @@ restart: stop start
 clean: down
 
 fclean: rmi host_del volume_del
-
+	docker system prune --volumes --all --force
 .PHONNY: all re host volume up down rmi start stop ps restart clean fclean volume_del host_del
 
