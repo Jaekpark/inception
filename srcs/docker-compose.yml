@@ -36,10 +36,10 @@ services:
     build:
       context: ./requirements/mariadb
       args:
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         MYSQL_ADMIN: ${MYSQL_ADMIN}
         MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
-        MYSQL_USER: ${MYSQL_USER}
     image: mariadb:${TAG}
     container_name: mariadb
     environment:
