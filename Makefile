@@ -10,11 +10,14 @@ all: host volume up
 re: fclean all
 
 host:
-	./srcs/requirements/tools/setup.sh append
+	@./srcs/requirements/tools/setup.sh append
 
 volume:
-	mkdir -p /home/jaekpark/data/db
-	mkdir -p /home/jaekpark/data/wp
+	@mkdir -p /home/jaekpark/data/db
+	@mkdir -p /home/jaekpark/data/wp
+
+host_del:
+	@./srcs/requirements/tools/setup.sh delete
 
 up:
 	$(COMMAND) up --build -d
