@@ -29,6 +29,7 @@ RUN chown -R www-data:www-data /var/www/* &&\
 	echo "error_log = /dev/stderr" >> /etc/php/7.3/fpm/php.ini &&\
 	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar &&\
 	chmod +x wp-cli.phar &&\
-	mv wp-cli.phar /usr/local/bin/wp 
+	mv wp-cli.phar /usr/local/bin/wp
+
 EXPOSE 9000
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["sh","./entrypoint.sh"]
