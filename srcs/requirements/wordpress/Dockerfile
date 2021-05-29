@@ -23,4 +23,4 @@ RUN chown -R www-data:www-data /var/www/*
 RUN echo "error_log = /dev/stderr" >> /etc/php/7.3/fpm/php.ini
 
 EXPOSE 9000
-CMD ["php-fpm7.3", "--nodaemonize"]
+ENTRYPOINT ["php-fpm7.3", "--nodaemonize"]

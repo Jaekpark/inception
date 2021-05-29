@@ -3,20 +3,21 @@ version: "3"
 services:
   nginx:
     depends_on:
-      - wordpress
+        - wordpress
     build:
       context: ./requirements/nginx
     image: nginx:${TAG}
     container_name: nginx
     ports:
-      - "443:443"
+        - "443:443"
     restart: always
     volumes:
-      - wp_volume:/var/www/wordpress
-
+        - wp_volume:/var/www/wordpress
+    networks:
+        - inception_network
   wordpress:
     depends_on:
-      - mariadb
+        - mariadb
     build:
       context: ./requirements/wordpress
     image: wordpress:${TAG}
@@ -27,10 +28,12 @@ services:
       WORDPRESS_DB_USER: ${MYSQL_ADMIN}
       WORDPRESS_DB_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
     expose:
-      - "9000"
+        - "9000"
     restart: always
     volumes:
-      - wp_volume:/var/www/wordpress
+        - wp_volume:/var/www/wordpress
+    networks:
+        - inception_network
 
   mariadb:
     build:
@@ -48,11 +51,15 @@ services:
       MYSQL_ADMIN: ${MYSQL_ADMIN}
       MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
     expose:
-      - "3306"
+        - "3306"
     restart: always
     volumes:
-     - db_volume:/var/lib/mysql
+        - db_volume:/var/lib/mysql
+    networks:
+        - inception_network
 
+networks:
+    inception_network:
 volumes:
   wp_volume:
     driver: local

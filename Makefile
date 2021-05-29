@@ -1,4 +1,3 @@
-
 COMMAND = cd ./srcs && docker-compose
 SETUP_SH = ./srcs/requirements/tools/setup.sh
 WP_PATH = /home/jaekpark/data/wp
@@ -41,7 +40,7 @@ down:
 	@echo " - OK"
 
 rmi:
-	@echo " - Remove docker images"
+	@echo " - Remove application and images"
 	@$(COMMAND) down --rmi all
 	@echo " - OK"
 
@@ -58,11 +57,14 @@ stop:
 ps:
 	$(COMMAND) ps
 
+service:
+	@docker ps -q | xargs -n 1 docker inspect --format '{{ .NetworkSettings.IPAddress }} {{ .Name }}' | sed 's/ \// /'
+
 restart: stop start
 
 clean: down
 
 fclean: rmi host_del volume_del
 	docker system prune --volumes --all --force
-.PHONNY: all re host volume up down rmi start stop ps restart clean fclean volume_del host_del
+.PHONNY: all re host volume up down rmi start stop ps restart clean fclean volume_del host_del service
 
