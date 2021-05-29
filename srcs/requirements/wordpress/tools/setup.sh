@@ -5,4 +5,4 @@ wp core install --allow-root --path='/var/www/wordpress' \
     --title=My_inception \
     --admin_user=$MYSQL_ADMIN \
     --admin_password=$MYSQL_ADMIN_PASSWORD \
-    --admin_email=$WORDPRESS_ADMIN_EMAIL \
+    --admin_email=$WORDPRESS_ADMIN_EMAIL
