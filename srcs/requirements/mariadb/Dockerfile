@@ -10,4 +10,4 @@ RUN mkdir -p /run/mysql
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 
 EXPOSE 3306
-ENTRYPOINT ["bash", "entrypoint.sh"]
+ENTRYPOINT ["sh", "entrypoint.sh"]
