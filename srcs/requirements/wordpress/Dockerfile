@@ -17,6 +17,7 @@ RUN mkdir -p /var/www &&\
 
 COPY ./tools/latest.tar.gz ./
 COPY ./tools/entrypoint.sh ./
+COPY ./tools/setup.sh ./
 
 RUN tar -xvf latest.tar.gz &&\
 	mv wordpress /var/www/wordpress/ &&\
@@ -32,4 +33,4 @@ RUN chown -R www-data:www-data /var/www/* &&\
 	mv wp-cli.phar /usr/local/bin/wp
 
 EXPOSE 9000
-ENTRYPOINT ["sh","./entrypoint.sh"]
+ENTRYPOINT ["sh","entrypoint.sh"]
