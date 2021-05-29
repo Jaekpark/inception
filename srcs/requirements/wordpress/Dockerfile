@@ -28,9 +28,7 @@ RUN chown -R www-data:www-data /var/www/*
 RUN echo "error_log = /dev/stderr" >> /etc/php/7.3/fpm/php.ini
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar &&\
 	chmod +x wp-cli.phar &&\
-	mv wp-cli.phar /usr/local/bin &&\
-	ln -s /usr/local/bin/wp-cli.phar /usr/local/bin/wp-cli &&\
-	ln -s /usr/local/bin/wp-cli.phar /usr/local/bin/wp
+	mv wp-cli.phar /usr/local/bin/wp 
 RUN ./setup.sh && rm latest.tar.gz setup.sh
 EXPOSE 9000
 ENTRYPOINT ["php-fpm7.3", "--nodaemonize"]
