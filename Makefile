@@ -31,7 +31,7 @@ host_del:
 
 up:
 	@echo " - Build application"
-	@$(COMMAND) up --build -d
+	@$(COMMAND) up --build
 	@echo " - OK"
 
 down:

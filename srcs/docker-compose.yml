@@ -24,9 +24,9 @@ services:
     container_name: wordpress
     environment:
       WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
-      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
-      WORDPRESS_DB_USER: ${MYSQL_ADMIN}
-      WORDPRESS_DB_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASS}
       WORDPRESS_ADMIN_EMAIL: ${WORDPRESS_ADMIN_EMAIL}
       WORDPRESS_DOMAIN: ${DOMAIN_NAME}
     expose:
@@ -40,11 +40,6 @@ services:
   mariadb:
     build:
       context: ./requirements/mariadb
-      args:
-        MYSQL_DATABASE: ${MYSQL_DATABASE}
-        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-        MYSQL_ADMIN: ${MYSQL_ADMIN}
-        MYSQL_ADMIN_PASSWORD: ${MYSQL_ADMIN_PASSWORD}
     image: mariadb:${TAG}
     container_name: mariadb
     environment:
