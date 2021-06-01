@@ -2,6 +2,10 @@
 
 status=0
 
+cat << EOF > exit.sql
+exit
+EOF
+
 wp_install()
 {
 	wp core install --allow-root --path=/var/www/wordpress --url=${WORDPRESS_DOMAIN} --title=My_inception --admin_user=${WORDPRESS_DB_USER} --admin_password=${WORDPRESS_DB_PASSWORD} --admin_email=${WORDPRESS_ADMIN_EMAIL} --skip-email
@@ -9,7 +13,7 @@ wp_install()
 
 connect_db()
 {
-	while ! mysql -hmariadb -P3306 -u$WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD ; do
+	while ! mysql -hmariadb -P3306 -u$WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD < exit.sql ; do
 		if [ $status -ge 30 ]; then
 			printf "FAILED connect to db\n"
 			exit 1
@@ -26,11 +30,7 @@ check()
 }
 
 
-connect_db()
-if [ mysql -hmariadb 
+connect_db
 
-if ! wp core --allow-root is-installed; then
-	wp_install
-	check
-fi
+wp_install
 php-fpm7.3 -F
