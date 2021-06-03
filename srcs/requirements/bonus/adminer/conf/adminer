@@ -1,53 +1,35 @@
-# HTTP to HTTPS redirection
-server {
-    listen 80;
-    listen [::]:80;
 
-	server_name jaekpark.42.fr www.jaekpark.42.fr;
+server{
+	listen 4242;
 
-    return 301 https://$host$request_uri;
+	if ($http_x_forwarded_proto = "http") {
+    	return 301 https://$host$request_uri;
+	}
 }
 
-upstream adminer_upstream {
-	server 127.0.0.1:4242;
-}
-# HTTPS server with ssl-config.mozilla.org
 server {
-    listen 443 ssl http2;
-    listen [::]:443 ssl http2;
+    listen 4242 ssl;
 
-	server_name jaekpark.42.fr www.jaekpark.42.fr;
+	server_name jaekpark.42.fr;
 
-    root /var/www/wordpress;
+    root /var/www/adminer;
     index index.php index.html;
 
     location / {
         try_files $uri $uri/ =404;
     }
-
-	location /adminer/ {
-        proxy_pass http://adminer_upstream;
-
-        proxy_pass_header Server;
-        proxy_set_header Host $http_host;
-        proxy_redirect off;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-Protocol $scheme;
-	}
 	
     location ~ \.php$ {
-	    fastcgi_pass wordpress:9000;
+		include snippets/fastcgi-php.conf;
+	    fastcgi_pass unix:/run/php/php7.3-fpm.sock
         fastcgi_index index.php;
-        include fastcgi.conf;
 	}
-    
 
 	# Modern configuration
     ssl_protocols TLSv1.3;
     ssl_prefer_server_ciphers on;
     ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:kEDH+AESGCM:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES128-SHA256:AES128-SHA:SRP-RSA-AES-128-CBC-SHA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA:!DHE-RSA-AES256-GCM-SHA384:!DHE-RSA-AES128-GCM-SHA256;
 
-	# SSL certification and key
     ssl_certificate /ssl/jaekpark/inception.crt;
     ssl_certificate_key /ssl/jaekpark/inception.key;
 	

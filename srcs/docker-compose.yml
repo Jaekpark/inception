@@ -13,6 +13,7 @@ services:
     restart: always
     volumes:
         - wp_volume:/var/www/wordpress
+        - ssl_volume:/ssl/jaekpark
     networks:
         - inception_network
   wordpress:
@@ -57,7 +58,7 @@ services:
     networks:
         - inception_network
 
-
+##### BONUS #####
   redis:
     build:
       context: ./requirements/bonus/redis
@@ -71,7 +72,25 @@ services:
     restart: always
     networks:
       - inception_network
-
+  
+  adminer:
+    depends_on:
+      - mariadb
+    build:
+      context: ./requirements/bonus/adminer
+    image: adminer:${TAG}
+    container_name: adminer
+    environment:
+      KEY_PATH: ${KEY_PATH}
+      CRT_PATH: ${CRT_PATH}
+    ports:
+      - "4242:4242"
+    volumes:
+      - ssl_volume:/ssl/jaekpark
+    restart: always
+    networks:
+      - inception_network
+################
 networks:
     inception_network:
 volumes:
@@ -86,4 +105,10 @@ volumes:
     driver_opts:
       type: none
       device: ${DB_VOLUME_PATH}
+      o: bind
+  ssl_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/jaekpark/data/ssl
       o: bind

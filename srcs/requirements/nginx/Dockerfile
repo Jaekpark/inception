@@ -3,9 +3,11 @@ MAINTAINER jaekpark@student.42seoul.kr
 RUN apt-get update && apt-get -y upgrade &&\
 	apt-get install -y nginx openssl vim
 
+RUN mkdir -p /ssl/jaekpark
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout\
-	/etc/ssl/private/inception.key -out /etc/ssl/certs/inception.crt\
-	-subj "/C=KR/ST=GN/L=SEOUL/O=42/OU=INCEPTION"
+	/ssl/jaekpark/inception.key -out /ssl/jaekpark/inception.crt\
+	-subj "/C=KR/ST=GN/L=SEOUL/O=42/OU=INCEPTION" &&\
+	chmod 600 /ssl/jaekpark/inception.key /ssl/jaekpark/inception.crt
 
 COPY ./tools tools/
 RUN	mv tools/nginx.conf /etc/nginx/nginx.conf
