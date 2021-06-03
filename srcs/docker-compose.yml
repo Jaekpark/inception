@@ -29,6 +29,8 @@ services:
       WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASS}
       WORDPRESS_ADMIN_EMAIL: ${WORDPRESS_ADMIN_EMAIL}
       WORDPRESS_DOMAIN: ${DOMAIN_NAME}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
     expose:
         - "9000"
     restart: always
@@ -54,6 +56,21 @@ services:
         - db_volume:/var/lib/mysql
     networks:
         - inception_network
+
+
+  redis:
+    build:
+      context: ./requirements/bonus/redis
+    image: redis:${TAG}
+    container_name: redis
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+    expose:
+      - "6379"
+    restart: always
+    networks:
+      - inception_network
 
 networks:
     inception_network:

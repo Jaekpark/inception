@@ -10,6 +10,7 @@ RUN apt-get update && apt-get -y upgrade &&\
 	php-mysqli\
 	php-xml\
 	wget curl vim\
+	redis\
 	php-common
 
 RUN mkdir -p /var/www/wordpress &&\

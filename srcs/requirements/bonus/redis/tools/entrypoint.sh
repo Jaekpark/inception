@@ -11,15 +11,15 @@ fi
 echo -e "Done."
 
 status=0
-echo -e "Checking redis cconnection."
+echo -e "Checking redis connection."
 
-while [ "$(redis-cli -h ${REDIS_HOST} -p ${REDIS_PORT} pint 2> /dev/nell)" != "PONG" ]; do
+while [ "$(redis-cli -h ${REDIS_HOST} -p ${REDIS_PORT} ping 2> /dev/null)" != "PONG" ]; do
 	if [ $status -ge 30 ]; then
 		printf "No response from the redis server.\n"
 		exit 1
 	fi
 	printf "Waiting for response from redis server ($status/30)\n"
-	status=(($status + 1))
+	status=$((status + 1))
 	sleep 1
 done
 
