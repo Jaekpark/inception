@@ -12,10 +12,7 @@ while ! test -f "${KEY_PATH}" || ! test -f "${CRT_PATH}"; do
 done
 
 echo -e "[+] Running php-fpm daemon for adminer..."
-php-fpm7.3
-
-echo -e "[+] Checking nginx-adminer configuration..."
-nginx -t
+service php7.3-fpm start
 
 echo -e "[+] Running nginx for adminer..."
 nginx -g "daemon off;"

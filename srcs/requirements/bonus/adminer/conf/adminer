@@ -1,39 +1,19 @@
-
-server{
-	listen 4242;
-
-	if ($http_x_forwarded_proto = "http") {
-    	return 301 https://$host$request_uri;
-	}
-}
-
 server {
-    listen 4242 ssl;
+    listen 8080 ssl;
 
 	server_name jaekpark.42.fr;
 
     root /var/www/adminer;
     index index.php index.html;
 
-    location / {
-        try_files $uri $uri/ =404;
-    }
-	
-    location ~ \.php$ {
-		include snippets/fastcgi-php.conf;
-	    fastcgi_pass unix:/run/php/php7.3-fpm.sock
-        fastcgi_index index.php;
-	}
-
-	# Modern configuration
+    ssl_certificate /ssl/jaekpark/inception.crt;
+    ssl_certificate_key /ssl/jaekpark/inception.key;
     ssl_protocols TLSv1.3;
     ssl_prefer_server_ciphers on;
     ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:kEDH+AESGCM:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES128-SHA256:AES128-SHA:SRP-RSA-AES-128-CBC-SHA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA:!DHE-RSA-AES256-GCM-SHA384:!DHE-RSA-AES128-GCM-SHA256;
-
-    ssl_certificate /ssl/jaekpark/inception.crt;
-    ssl_certificate_key /ssl/jaekpark/inception.key;
 	
-    ssl_session_timeout 1d;
-    ssl_session_cache shared:MozSSL:10m;
-    ssl_session_tickets off;
+    location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+	    fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+	}
 }

@@ -84,7 +84,7 @@ services:
       KEY_PATH: ${KEY_PATH}
       CRT_PATH: ${CRT_PATH}
     ports:
-      - "4242:4242"
+      - "8080:8080"
     volumes:
       - ssl_volume:/ssl/jaekpark
     restart: always
@@ -110,5 +110,5 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/jaekpark/data/ssl
+      device: /Users/parkjaekwang/jaekpark/data/ssl
       o: bind
