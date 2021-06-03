@@ -18,6 +18,11 @@
  * @package WordPress
  */
 
+// ** Redis Cache settings **//
+
+#define( 'WP_REDIS_HOST', getenv('REDIS_HOST') );
+#define( 'WP_REDIS_PORT', getenv('REDIS_PORT') );
+
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 #define( 'DB_NAME', 'wordpress' );
