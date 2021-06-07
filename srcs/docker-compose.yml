@@ -1,11 +1,11 @@
 version: "3"
 
 services:
-	nginx:
-		depends_on:
-		- wordpress
+  nginx:
+	depends_on:
+        - wordpress
     build:
-		context: ./requirements/nginx
+	  context: ./requirements/nginx
 	image: nginx:${TAG}
     container_name: nginx
     ports:
@@ -16,6 +16,7 @@ services:
         - ssl_volume:/ssl/jaekpark
     networks:
         - inception_network
+        
   wordpress:
     depends_on:
         - mariadb
@@ -123,5 +124,5 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /Users/parkjaekwang/jaekpark/data/ssl
+      device: /home/jaekpark/data/ssl
       o: bind
