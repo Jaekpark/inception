@@ -69,7 +69,13 @@ services:
       - "21:21"
     restart: always
     volumes:
-      - wp_volume:/home/jaekpark/
+      - ssl_volume:/ssl/jaekpark
+      - wp_volume:/home/jaekpark
+    environment:
+      KEY_PATH: ${KEY_PATH}
+      CRT_PATH: ${CRT_PATH}
+      FTP_USER: ${FTP_USER}
+      FTP_PASSWORD: ${FTP_PASSWORD}
     networks:
       - inception_network
 

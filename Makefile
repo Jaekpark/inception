@@ -16,16 +16,14 @@ volume:
 	@echo " - Make volume directory : /home/jaekpark/data"
 	@mkdir -p /home/jaekpark/data/db
 	@mkdir -p /home/jaekpark/data/wp
-	@mkdir -p /home/jaekpark/data/certs
-	@mkdir -p /home/jaekpark/data/private
+	@mkdir -p /home/jaekpark/data/ssl
 	@echo " - OK"
 
 volume_del:
 	@echo " - delete volume directory"
 	@sudo rm -rf /home/jaekpark/data/db
 	@sudo rm -rf /home/jaekpark/data/wp
-	@sudo rm -rf /home/jaekpark/data/certs
-	@sudo rm -rf /home/jaekpark/data/private
+	@sudo rm -rf /home/jaekpark/data/ssl
 	@echo " - OK"
 
 host_del:
