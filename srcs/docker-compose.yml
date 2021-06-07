@@ -2,11 +2,11 @@ version: "3"
 
 services:
   nginx:
-	depends_on:
+    depends_on:
         - wordpress
     build:
-	  context: ./requirements/nginx
-	image: nginx:${TAG}
+      context: ./requirements/nginx
+    image: nginx:${TAG}
     container_name: nginx
     ports:
         - "443:443"
@@ -106,7 +106,7 @@ services:
       - inception_network
 ################
 networks:
-    inception_network:
+  inception_network:
 volumes:
   wp_volume:
     driver: local
