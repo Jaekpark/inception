@@ -1,12 +1,12 @@
 version: "3"
 
 services:
-  nginx:
-    depends_on:
-        - wordpress
+	nginx:
+		depends_on:
+		- wordpress
     build:
-      context: ./requirements/nginx
-    image: nginx:${TAG}
+		context: ./requirements/nginx
+	image: nginx:${TAG}
     container_name: nginx
     ports:
         - "443:443"
@@ -59,6 +59,19 @@ services:
         - inception_network
 
 ##### BONUS #####
+  ftp:
+    build:
+      context: ./requirements/bonus/ftp
+    image: ftp:${TAG}
+    container_name: ftp
+    ports:
+      - "21:21"
+    restart: always
+    volumes:
+      - wp_volume:/home/jaekpark/
+    networks:
+      - inception_network
+
   redis:
     build:
       context: ./requirements/bonus/redis
