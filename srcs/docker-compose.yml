@@ -93,6 +93,19 @@ services:
     networks:
       - inception_network
   
+  blog:
+    build:
+      context: ./requirements/bonus/blog
+    image: blog:${TAG}
+    container_name: blog
+    ports:
+      - "3000:3000"
+    volumes:
+      - blog_volume:/usr/app
+    restart: always
+    networks:
+      - inception_network
+
   adminer:
     depends_on:
       - mariadb
@@ -110,6 +123,7 @@ services:
     restart: always
     networks:
       - inception_network
+
 ################
 networks:
   inception_network:
@@ -131,4 +145,10 @@ volumes:
     driver_opts:
       type: none
       device: /home/jaekpark/data/ssl
+      o: bind
+  blog_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/jaekpark/data/blog
       o: bind

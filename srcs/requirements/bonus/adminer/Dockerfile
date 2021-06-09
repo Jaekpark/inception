@@ -1,4 +1,5 @@
 FROM debian:buster
+MAINTAINER jaekpark@student.42seoul.kr
 RUN apt-get update && apt-get -y upgrade 
 RUN	apt-get install -y nginx \
 	php-fpm \

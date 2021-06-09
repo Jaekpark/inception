@@ -17,6 +17,7 @@ volume:
 	@mkdir -p /home/jaekpark/data/db
 	@mkdir -p /home/jaekpark/data/wp
 	@mkdir -p /home/jaekpark/data/ssl
+	@mkdir -p /home/jaekpark/data/blog
 	@echo " - OK"
 
 volume_del:
@@ -24,6 +25,7 @@ volume_del:
 	@sudo rm -rf /home/jaekpark/data/db
 	@sudo rm -rf /home/jaekpark/data/wp
 	@sudo rm -rf /home/jaekpark/data/ssl
+	@sudo rm -rf /home/jaekpark/data/blog
 	@echo " - OK"
 
 host_del:
