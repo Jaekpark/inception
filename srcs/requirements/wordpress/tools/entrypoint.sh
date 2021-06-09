@@ -58,6 +58,7 @@ connect_redis()
 	done
 }
 
+chown -R www-data:www-data /var/www/
 connect_db
 wp_install
 redis_install

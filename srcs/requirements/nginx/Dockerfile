@@ -4,8 +4,8 @@ RUN apt-get update && apt-get -y upgrade &&\
 	apt-get install -y nginx openssl vim
 
 RUN mkdir -p /ssl/jaekpark
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout\
-	/ssl/jaekpark/inception.key -out /ssl/jaekpark/inception.crt\
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout \
+	/ssl/jaekpark/inception.key -out /ssl/jaekpark/inception.crt \
 	-subj "/C=KR/ST=GN/L=SEOUL/O=42/OU=INCEPTION" &&\
 	chmod 600 /ssl/jaekpark/inception.key /ssl/jaekpark/inception.crt
 

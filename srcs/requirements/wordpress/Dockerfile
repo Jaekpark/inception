@@ -22,10 +22,9 @@ RUN	echo "error_log = /dev/stderr" >> /etc/php/7.3/fpm/php.ini &&\
 	chmod +x wp-cli.phar &&\
 	mv wp-cli.phar /usr/local/bin/wp
 
-RUN wp core download --allow-root --path=/var/www/wordpress
+RUN wp core download --version=5.7.1 --locale=ko_KR --allow-root --path=/var/www/wordpress
 COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d
 COPY ./conf/wp-config.php /var/www/wordpress/
-RUN chown -R www-data:www-data /var/www/*
 
 EXPOSE 9000
 ENTRYPOINT ["bash","entrypoint.sh"]

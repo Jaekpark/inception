@@ -17,7 +17,7 @@ RUN	apt-get install -y nginx \
 	php-imap \
 	wget
 RUN mkdir -p /var/www/adminer
-RUN	wget "http://www.adminer.org/latest.php" -O /var/www/adminer/index.php &&\
+RUN wget https://github.com/vrana/adminer/releases/download/v4.7.7/adminer-4.7.7.php -O /var/www/adminer/index.php &&\
 	chmod -R 755  /var/www &&\
 	mkdir -p /run/nginx &&\
 	mkdir -p /ssl/jaekpark &&\
