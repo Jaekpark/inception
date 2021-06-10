@@ -2,7 +2,7 @@
 
 title: "Libft 3"
 
-preview: "memset, bzero, memcpy, memccpy, memchr, memcmp, wchar_t"
+preview: "memmove, strncmp, atoi, isalpha, isdigit, isalnum, isascii, isprint, toupper, tolower"
 
 date: "2021-06-08"
 

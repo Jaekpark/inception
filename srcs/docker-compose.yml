@@ -98,8 +98,8 @@ services:
       context: ./requirements/bonus/blog
     image: blog:${TAG}
     container_name: blog
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     volumes:
       - blog_volume:/usr/app
     restart: always
@@ -116,8 +116,8 @@ services:
     environment:
       KEY_PATH: ${KEY_PATH}
       CRT_PATH: ${CRT_PATH}
-    ports:
-      - "8080:8080"
+    expose:
+      - "8080"
     volumes:
       - ssl_volume:/ssl/jaekpark
     restart: always

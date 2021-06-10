@@ -2,7 +2,7 @@
 
 title: "Netwhat"
 
-preview: "OSI 7 Layer"
+preview: "What is a Network : OSI 7 Layer"
 
 date: "2021-06-08"
 

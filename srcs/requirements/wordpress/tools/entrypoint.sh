@@ -30,18 +30,11 @@ connect_db()
 	echo -e "Success."
 }
 
-conf_file=/var/www/wordpress/wp_config.php
 redis_install()
 {
 	wp plugin install --allow-root --activate redis-cache --path=/var/www/wordpress
-	wp plugin activate --allow-root redis-cache --path-/var/www/wordpress
-	# if [[ $(cat "$conf_file" | grep "#define( 'WP_REDIS_HOST', getenv('REDIS_HOST') );"| wc -l) | -eq 1 ]]; then
-	# 	echo -e "config wp-config for redis."
-	# 	sed -i "s/#define( 'WP_REDIS_HOST/define( 'WP_REDIS_HOST" $conf_file
-	# 	check
-	# 	sed -i "s/#define( 'WP_REDIS_PORT/define( 'WP_REDIS_PORT" $conf_file
-	# 	check
-	# fi
+	wp plugin activate --allow-root redis-cache --path=/var/www/wordpress
+	wp plugin update --all --allow-root --path=/var/www/wordpress
 }
 
 redis_status=0
@@ -58,9 +51,9 @@ connect_redis()
 	done
 }
 
-chown -R www-data:www-data /var/www/
 connect_db
 wp_install
+chown -R www-data:www-data /var/www
 redis_install
 connect_redis
 php-fpm7.3 -F
