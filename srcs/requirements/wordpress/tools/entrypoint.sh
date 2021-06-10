@@ -53,7 +53,8 @@ connect_redis()
 
 connect_db
 wp_install
-chown -R www-data:www-data /var/www
 redis_install
 connect_redis
+chown -R www-data:www-data /var/www/
+wp redis enable --allow-root --path=/var/www/wordpress
 php-fpm7.3 -F

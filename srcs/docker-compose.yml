@@ -70,7 +70,8 @@ services:
     restart: always
     volumes:
       - ssl_volume:/ssl/jaekpark
-      - wp_volume:/home/jaekpark
+      - wp_volume:/home/jaekpark/wordpress
+      - blog_volume:/home/jaekpark/blog
     environment:
       KEY_PATH: ${KEY_PATH}
       CRT_PATH: ${CRT_PATH}

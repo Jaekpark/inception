@@ -1,7 +1,4 @@
 COMMAND = cd ./srcs && docker-compose
-SETUP_SH = ./srcs/requirements/tools/setup.sh
-WP_PATH = /home/jaekpark/data/wp
-DB_PATH = /home/jaekpark/data/db
 
 all: host volume up
 
@@ -68,7 +65,7 @@ restart: stop start
 
 clean: down
 
-fclean: rmi host_del volume_del
+fclean: rmi host_del
 	docker system prune --volumes --all --force
 .PHONNY: all re host volume up down rmi start stop ps restart clean fclean volume_del host_del service
 

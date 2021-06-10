@@ -24,6 +24,8 @@ add_ftpuser()
 
 make_user
 mkdir -p /home/jaekpark
+mkdir -p /home/jaekpark/wordpress
+mkdir -p /home/jaekpark/blog
 chmod 755 /home/jaekpark
 mkdir -p /var/run/vsftpd/empty
 chown -R jaekpark:jaekpark /home/jaekpark
